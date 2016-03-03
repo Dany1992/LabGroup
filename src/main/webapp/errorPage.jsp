@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Error</title>
 </head>
 <body>
-	<h1>Benvenuti al sito per sondaggi</h1>
-	<a href="register.jsp">Register</a>
+	Avete sbagliato qualcosa
 </body>
 </html>

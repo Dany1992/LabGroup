@@ -7,11 +7,12 @@ public class ManagerDataUser extends DataBase {
 	private String query;	
 	
 	public int saveUser(User usr){
-		query = "INSERT INTO User(name,surname,email,password) VALUES ('" +
-				usr.getName() + "', " +
-				usr.getSurname() + ", " +
-				usr.getEmail() + ", " +
-				usr.getPassword() +");";
+		query = "INSERT INTO US(name,surname,email,password,type) VALUES ('" +
+				usr.getName() + "', '" +
+				usr.getSurname() + "', '" +
+				usr.getEmail() + "', '" +
+				usr.getPassword() +"',2);";
+		System.out.println(query);
 		return insertToDB(query);
 	}
 	
