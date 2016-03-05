@@ -24,7 +24,6 @@ public class ManagerDataCategory extends DataBase {
 	public ArrayList<String> selectAllCategory(){
 		query = "SELECT nameCategory FROM category";
 		category = queryToDB(query);
-		System.out.println(category);
 		return category;
 	}
 	
