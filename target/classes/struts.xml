@@ -9,6 +9,11 @@
     <package name="default" namespace="/" extends="struts-default">
 		
 		<action name="register" class="it.lab.sondaggio.action.RegisterAction" method="execute">
+            <result name = "success">register.jsp</result>
+            <result name ="error">error.jsp</result>
+        </action>
+        
+        <action name="register2" class="it.lab.sondaggio.action.RegisterAction" method="execute2">
             <result name = "success">index.jsp</result>
             <result name ="error">error.jsp</result>
         </action>

@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<s:form action="register">
+		<s:form action="register2">
 		<s:textfield name="usr.name" label="Name" />
 		<s:textfield name="usr.surname" label="Surname" />
 		<s:textfield name="usr.email" label="e-mail" />
-		<s:textfield name="usr.password" label="password" />
+		<s:password name="usr.password" label="password" />
+		<s:checkboxlist label="Categorie" list="allCategory" name="allCategory" value="userCategory"/>
 		<s:submit/>
 		</s:form>
 </body>

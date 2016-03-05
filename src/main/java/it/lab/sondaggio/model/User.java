@@ -1,4 +1,6 @@
-package it.lab.sondaggio.view;
+package it.lab.sondaggio.model;
+
+import java.util.ArrayList;
 
 public class User {
 	private int idUser;
@@ -6,7 +8,17 @@ public class User {
 	private String surname;
 	private String email;
 	private String password;
+	private ArrayList<String> categorie;
 	
+	
+	public ArrayList<String> getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(ArrayList<String> categorie) {
+		this.categorie = categorie;
+	}
+
 	public int getIdUser() {
 		return idUser;
 	}
