@@ -22,7 +22,7 @@ public class ManagerDataCategory extends DataBase {
 	 * @return category ArrayList
 	 */
 	public ArrayList<String> selectAllCategory(){
-		query = "SELECT nameCategory FROM CT";
+		query = "SELECT nameCategory FROM category";
 		category = queryToDB(query);
 		System.out.println(category);
 		return category;

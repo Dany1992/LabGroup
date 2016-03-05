@@ -10,5 +10,6 @@
 <body>
 	<h1>Benvenuti al sito per sondaggi</h1>
 	<a href="<s:url action='register'/>">Register</a>
+	<a href="<s:url action='newSurvey2'/>">Create Survey</a>
 </body>
 </html>
