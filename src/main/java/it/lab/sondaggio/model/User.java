@@ -8,15 +8,15 @@ public class User {
 	private String surname;
 	private String email;
 	private String password;
-	private ArrayList<String> categorie;
+	private ArrayList<String> userCategory;
 	
 	
-	public ArrayList<String> getCategorie() {
-		return categorie;
+	public ArrayList<String> getUserCategory() {
+		return userCategory;
 	}
 
-	public void setCategorie(ArrayList<String> categorie) {
-		this.categorie = categorie;
+	public void setUserCategory(ArrayList<String> categorie) {
+		this.userCategory = categorie;
 	}
 
 	public int getIdUser() {

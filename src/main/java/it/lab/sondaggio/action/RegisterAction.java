@@ -24,15 +24,6 @@ public class RegisterAction extends ActionSupport {
 	}
 	
 	ArrayList<String> allCategory = new ArrayList<String>();
-	ArrayList<String> userCategory = new ArrayList<String>();
-	
-	public ArrayList<String> getUserCategory() {
-		return userCategory;
-	}
-
-	public void setUserCategory(ArrayList<String> userCategory) {
-		this.userCategory = userCategory;
-	}
 
 	public ArrayList<String> getAllCategory() {
 		return allCategory;
@@ -59,6 +50,7 @@ public class RegisterAction extends ActionSupport {
 		ManagerDataUser mdu = new ManagerDataUser();
 		// Imposto il percorso del database
 		mdu.setPath(Parameter.JDBC_SONDAGGIO);
+		usr.setUserCategory(allCategory);
 		int result = mdu.saveUser(usr);
 		if (result == 1){
 			return SUCCESS;
