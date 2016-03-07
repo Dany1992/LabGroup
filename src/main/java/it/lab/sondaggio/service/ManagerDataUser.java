@@ -4,8 +4,6 @@ package it.lab.sondaggio.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.opensymphony.xwork2.Result;
-
 import it.lab.sondaggio.model.User;
 import utility.DataBase;
 
@@ -49,10 +47,18 @@ public class ManagerDataUser extends DataBase {
 		}
 	}
 	
+	/**
+	 * Il seguente metodo consente di memorizzare nel db tutte le categorie che ha selezionato 
+	 * l'utente in fase di registrazione
+	 * @param idUser String
+	 * @param category ArrayList<String>
+	 * @return int 
+	 */
+	
 	public int saveCategoryUser(String idUser,ArrayList<String> category){
 		String query;
 		System.out.println(category.get(0));
-		for (Iterator iterator = category.iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = category.iterator(); iterator.hasNext();) {
 			String string = (String) iterator.next();
 			System.out.println(string);
 			query = "INSERT INTO chooseCategory(idUser,nameCategory) VALUES ('" +

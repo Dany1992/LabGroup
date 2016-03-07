@@ -2,6 +2,14 @@ package it.lab.sondaggio.model;
 
 import java.util.ArrayList;
 
+/**
+ * Questa classe contine semplicemente i dati che l'utente inserisce in fase di
+ * registrazione e tutti i get e set
+ * @author Danilo Butrico
+ * @version 22-02-2016
+ *
+ */
+
 public class User {
 	private int idUser;
 	private String name;
