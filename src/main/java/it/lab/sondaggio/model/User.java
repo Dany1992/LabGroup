@@ -16,6 +16,7 @@ public class User {
 	private String surname;
 	private String email;
 	private String password;
+	private Integer type;
 	private ArrayList<String> userCategory;
 	
 	
@@ -31,6 +32,10 @@ public class User {
 		return idUser;
 	}
 	
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -54,5 +59,11 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
 	}
 }

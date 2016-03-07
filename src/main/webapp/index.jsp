@@ -9,6 +9,25 @@
 </head>
 <body>
 	<h1>Benvenuti al sito per sondaggi</h1>
-	<a href="<s:url action='register'/>">Register</a>
+	<%
+		session=request.getSession(false);
+		if(session.getAttribute("id") == null){
+	%>
+		<a href="login.jsp">Login</a>
+		<a href="<s:url action='register'/>">Register</a>
+		<a href="<s:url action='newSurvey2'/>">Create Survey</a>
+	<%
+		}else{
+	%>
+		<p>
+			Hello <s:property value="#session['name']" />
+			<s:property value="#session['surname']" />
+		</p>
+		<s:url action="logout.action" var="urlTag" ></s:url>
+		<a href="<s:property value="#urlTag" />" >Logout.</a>
+	<%
+		}
+	%>
+
 </body>
 </html>
