@@ -10,6 +10,12 @@ import it.lab.sondaggio.service.ManagerDataUser;
 import it.lab.sondaggio.utils.Parameter;
 
 
+/**
+ * 
+ * @author Dany
+ *
+ */
+
 public class RegisterAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	
