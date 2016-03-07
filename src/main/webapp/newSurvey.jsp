@@ -19,7 +19,7 @@
 
    <table>
    <s:textfield name="s.name" label="Survay"/>
-   <s:checkboxlist label="Categorie" list="allCategory" name="allCategory" value="userCategory"/>
+   <s:combobox label="Categorie" list="allCategory" name="s.category" value="userCategory"/>
    <!--  
    <s:combobox label="Category" 
 		headerKey="-1" headerValue="--- Select Category ---"

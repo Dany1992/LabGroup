@@ -18,7 +18,10 @@ import utility.DataBase;
  *
  */
 public class ManagerDataUser extends DataBase {
-	private String query;	
+	private String query;
+	private static boolean SUCCESS = true;
+	private static boolean ERROR = false;
+	ArrayList<String> resQuery;
 	
 	/**
 	 * Questa metodo permette di salvare i dati di un user nel db
@@ -35,7 +38,7 @@ public class ManagerDataUser extends DataBase {
 				usr.getEmail() + "', '" +
 				usr.getPassword() +"',2);";
 		int resultSaveUser=insertToDB(query);
-		query = "SELECT idUser FROM User WHERE email = " + "'"+usr.getEmail()+"'";
+		query = "SELECT idUser FROM user WHERE email = " + "'"+usr.getEmail()+"'";
 		String idUser = queryToDB(query).get(0);
 		int resultSaveCategory = saveCategoryUser(idUser, usr.getUserCategory());
 		/*if serve per controllare che sia il salvataggio dei dati user
@@ -65,4 +68,99 @@ public class ManagerDataUser extends DataBase {
 		return 1;
 	}
 
+	/*
+	 * sfrutta i metodi get per recuperare tutte le informazioni che riguardano
+	 * un utente.
+	 */
+	public User getUserToDb(User usr){
+		usr.setIdUser(Integer.parseInt(getIdUser(usr)));
+		usr.setName(getName(usr));
+		usr.setSurname(getSurname(usr));
+		usr.setEmail(getEmail(usr));
+		usr.setPassword(getPassword(usr));
+		usr.setType(Integer.parseInt(getType(usr)));
+		return usr;
+	}
+	
+	public Boolean checkUser(User usr){
+		
+	query = "SELECT idUser FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";
+		
+		resQuery = queryToDB(query);
+		if(resQuery.size() == 0){
+			
+			return ERROR;
+			
+		}
+		
+		return SUCCESS;
+	
+	}
+	
+	public String getEmail(User usr){
+		query = "SELECT email FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";
+		/*
+		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
+		 * in questo caso la query restituisce un solo valore e quindi lo si prende
+		 * con get(0) in prima posizione
+		 */
+		return queryToDB(query).get(0);
+	}
+	
+	public String getIdUser(User usr){
+		query = "SELECT idUser FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";
+		/*
+		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
+		 * in questo caso la query restituisce un solo valore e quindi lo si prende
+		 * con get(0) in prima posizione
+		 */
+		return queryToDB(query).get(0);
+	}
+	
+	public String getName(User usr){
+		query = "SELECT name FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";
+		/*
+		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
+		 * in questo caso la query restituisce un solo valore e quindi lo si prende
+		 * con get(0) in prima posizione
+		 */
+		return queryToDB(query).get(0);
+	}
+	
+	public String getSurname(User usr){
+		query = "SELECT surname FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";
+		/*
+		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
+		 * in questo caso la query restituisce un solo valore e quindi lo si prende
+		 * con get(0) in prima posizione
+		 */
+		return queryToDB(query).get(0);
+	}
+	
+	public String getType(User usr){
+		query = "SELECT type FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";
+		/*
+		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
+		 * in questo caso la query restituisce un solo valore e quindi lo si prende
+		 * con get(0) in prima posizione
+		 */
+		return queryToDB(query).get(0);
+	}
+	
+	public String getPassword(User usr){
+		query = "SELECT password FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";
+		/*
+		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
+		 * in questo caso la query restituisce un solo valore e quindi lo si prende
+		 * con get(0) in prima posizione
+		 */
+		return queryToDB(query).get(0);
+	}
 }
