@@ -3,9 +3,6 @@ package it.lab.sondaggio.service;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import com.opensymphony.xwork2.Result;
-
 import it.lab.sondaggio.model.User;
 import utility.DataBase;
 
@@ -17,10 +14,8 @@ import utility.DataBase;
  * @version 26-02-2016
  *
  */
-public class ManagerDataUser extends DataBase {
+public class ManagerDataUser extends DataBase{
 	private String query;
-	private static boolean SUCCESS = true;
-	private static boolean ERROR = false;
 	ArrayList<String> resQuery;
 	
 	/**
@@ -55,7 +50,7 @@ public class ManagerDataUser extends DataBase {
 	public int saveCategoryUser(String idUser,ArrayList<String> category){
 		String query;
 		System.out.println(category.get(0));
-		for (Iterator iterator = category.iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = category.iterator(); iterator.hasNext();) {
 			String string = (String) iterator.next();
 			System.out.println(string);
 			query = "INSERT INTO chooseCategory(idUser,nameCategory) VALUES ('" +
@@ -68,99 +63,25 @@ public class ManagerDataUser extends DataBase {
 		return 1;
 	}
 
-	/*
-	 * sfrutta i metodi get per recuperare tutte le informazioni che riguardano
-	 * un utente.
-	 */
-	public User getUserToDb(User usr){
-		usr.setIdUser(Integer.parseInt(getIdUser(usr)));
-		usr.setName(getName(usr));
-		usr.setSurname(getSurname(usr));
-		usr.setEmail(getEmail(usr));
-		usr.setPassword(getPassword(usr));
-		usr.setType(Integer.parseInt(getType(usr)));
-		return usr;
-	}
-	
-	public Boolean checkUser(User usr){
-		
-	query = "SELECT idUser FROM user WHERE email='" + usr.getEmail() + "'" +
-				" and password='" + usr.getPassword() + "';";
+	public User checkUser(User usr){
+		query ="SELECT idUser, name, surname, email, password, type FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";;
 		
 		resQuery = queryToDB(query);
 		if(resQuery.size() == 0){
 			
-			return ERROR;
+			return null;
 			
 		}
-		
-		return SUCCESS;
+
+		usr.setIdUser(Integer.parseInt(resQuery.get(0)));
+		usr.setName(resQuery.get(1));
+		usr.setSurname(resQuery.get(2));
+		usr.setEmail(resQuery.get(3));
+		usr.setPassword(resQuery.get(4));
+		usr.setType(Integer.parseInt(resQuery.get(5)));
+
+		return usr;
 	
-	}
-	
-	public String getEmail(User usr){
-		query = "SELECT email FROM user WHERE email='" + usr.getEmail() + "'" +
-				" and password='" + usr.getPassword() + "';";
-		/*
-		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
-		 * in questo caso la query restituisce un solo valore e quindi lo si prende
-		 * con get(0) in prima posizione
-		 */
-		return queryToDB(query).get(0);
-	}
-	
-	public String getIdUser(User usr){
-		query = "SELECT idUser FROM user WHERE email='" + usr.getEmail() + "'" +
-				" and password='" + usr.getPassword() + "';";
-		/*
-		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
-		 * in questo caso la query restituisce un solo valore e quindi lo si prende
-		 * con get(0) in prima posizione
-		 */
-		return queryToDB(query).get(0);
-	}
-	
-	public String getName(User usr){
-		query = "SELECT name FROM user WHERE email='" + usr.getEmail() + "'" +
-				" and password='" + usr.getPassword() + "';";
-		/*
-		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
-		 * in questo caso la query restituisce un solo valore e quindi lo si prende
-		 * con get(0) in prima posizione
-		 */
-		return queryToDB(query).get(0);
-	}
-	
-	public String getSurname(User usr){
-		query = "SELECT surname FROM user WHERE email='" + usr.getEmail() + "'" +
-				" and password='" + usr.getPassword() + "';";
-		/*
-		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
-		 * in questo caso la query restituisce un solo valore e quindi lo si prende
-		 * con get(0) in prima posizione
-		 */
-		return queryToDB(query).get(0);
-	}
-	
-	public String getType(User usr){
-		query = "SELECT type FROM user WHERE email='" + usr.getEmail() + "'" +
-				" and password='" + usr.getPassword() + "';";
-		/*
-		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
-		 * in questo caso la query restituisce un solo valore e quindi lo si prende
-		 * con get(0) in prima posizione
-		 */
-		return queryToDB(query).get(0);
-	}
-	
-	public String getPassword(User usr){
-		query = "SELECT password FROM user WHERE email='" + usr.getEmail() + "'" +
-				" and password='" + usr.getPassword() + "';";
-		/*
-		 * Il metodo queryToDB restituisce l'array degli elementi estratti dalla query
-		 * in questo caso la query restituisce un solo valore e quindi lo si prende
-		 * con get(0) in prima posizione
-		 */
-		return queryToDB(query).get(0);
 	}
 }

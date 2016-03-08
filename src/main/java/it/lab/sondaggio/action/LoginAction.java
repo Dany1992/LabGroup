@@ -13,10 +13,11 @@ import it.lab.sondaggio.utils.Parameter;
 
 public class LoginAction extends ActionSupport implements SessionAware{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 	private SessionMap<String, Object> session;
 	
 	private User usr = new User();
+	private User userTmp;
 	
 	@Override
 	public String execute() throws Exception {
@@ -32,15 +33,15 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		// Imposto il percorso del database
 		mdu.setPath(Parameter.JDBC_SONDAGGIO);
 		
-		if(mdu.checkUser(usr) == false){
+		userTmp = mdu.checkUser(usr);
+		if(userTmp == null){
 			return ERROR;
 		}
 		
-		usr = mdu.getUserToDb(usr);
-		session.put("id", usr.getIdUser());
-		session.put("name", usr.getName());
-		session.put("surname", usr.getSurname());
-		session.put("email", usr.getEmail());
+		session.put("id", userTmp.getIdUser());
+		session.put("name", userTmp.getName());
+		session.put("surname", userTmp.getSurname());
+		session.put("email", userTmp.getEmail());
 		return SUCCESS;
 	}
 
@@ -51,6 +52,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	public void setUsr(User usr){
 		this.usr=usr;
 	}
+
 
 	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
