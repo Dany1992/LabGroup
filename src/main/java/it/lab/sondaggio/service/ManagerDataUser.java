@@ -4,7 +4,7 @@ package it.lab.sondaggio.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.opensymphony.xwork2.Result;
+//import com.opensymphony.xwork2.Result;
 
 import it.lab.sondaggio.model.User;
 import utility.DataBase;
