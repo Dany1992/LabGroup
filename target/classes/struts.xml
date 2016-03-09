@@ -44,6 +44,12 @@
 	   <action name="logout" class="it.lab.sondaggio.action.LogOutAction" method="execute">
 			<result name = "success">index.jsp</result>
 	   </action>
+	   
+	   <action name="selectUser" class="it.lab.sondaggio.action.CreateAdminAction" method="execute">
+			<result name = "success">createAdmin.jsp</result>
+			 <result name ="error">errorPage.jsp</result>
+	   </action>
+	   
     </package>
 
     <!-- Add addition packages and configuration here. -->

@@ -18,7 +18,8 @@ import utility.DataBase;
  */
 public class ManagerDataUser extends DataBase{
 	private String query;
-	ArrayList<String> resQuery;
+	private ArrayList<String> resQuery;
+	private ArrayList<User> usrList = new ArrayList<User>();
 	
 	/**
 	 * Questa metodo permette di salvare i dati di un user nel db
@@ -86,4 +87,27 @@ public class ManagerDataUser extends DataBase{
 		return usr;
 	
 	}
+	
+	public ArrayList<User> selectAllUser(){
+        ArrayList<String> u;
+        query = "SELECT idUser, name, surname, email, password, type FROM user "
+                + "WHERE type = 2;";
+        System.out.println(query);
+        u = queryToDB(query);
+
+        //mettimo tutto dentro usrList
+        for (int i = 0; i < u.size(); i = i+6) {
+            User user = new User();
+            user.setIdUser(Integer.parseInt(u.get(i)));
+            user.setName(u.get(i+1));
+            user.setSurname(u.get(i+2));
+            user.setEmail(u.get(i+3));
+            user.setPassword(u.get(i+4));
+            user.setType(Integer.parseInt(u.get(i+5)));
+            usrList.add(user);
+        }
+        
+      
+    return usrList;
+    }
 }

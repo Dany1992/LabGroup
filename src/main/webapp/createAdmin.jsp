@@ -5,15 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Create Admin</title>
 </head>
 <body>
-	<h1>Benvenuti al sito per sondaggi</h1>
-	
-	<a href="login.jsp">Login</a>
-	<a href="<s:url action='register'/>">Register</a>
-	<a href="<s:url action='newSurvey2'/>">Create Survey</a>
-	<a href="<s:url action='showResult'/>">Show Result "sorcio"</a>
-	<a href="<s:url action='selectUser'/>">CreateAdmin</a>
+<h1> Create Admin </h1>
+
+<s:form action = "selectUser">
+	<s:iterator value="getAllUser()">
+		<s:a><s:property value="getName()"/>, <s:property value="getSurname()"/> </s:a><br>
+	</s:iterator>
+
+</s:form>
+
+
+
 </body>
 </html>

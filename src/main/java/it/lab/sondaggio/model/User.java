@@ -11,6 +11,10 @@ public class User {
 	private Integer type;
 	private ArrayList<String> userCategory;
 	
+    public void printUser(){
+	        System.out.println(this.idUser+ " " +this.name+" "+this.surname+" "+ this.email+" "+this.password+" "+this.type);
+    }
+	
 	
 	public ArrayList<String> getUserCategory() {
 		return userCategory;
@@ -58,4 +62,5 @@ public class User {
 	public void setType(Integer type) {
 		this.type = type;
 	}
+	
 }
