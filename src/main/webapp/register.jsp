@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<s:form action="register2">
+	<s:form action="register2" validate="true" method="post">
 		<s:textfield name="usr.name" label="Name" />
 		<s:textfield name="usr.surname" label="Surname" />
 		<s:textfield name="usr.email" label="e-mail" />

@@ -34,6 +34,7 @@ public class RegisterAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
+		System.out.println("execute");
 		ManagerDataCategory mdc = new ManagerDataCategory();
 		mdc.setPath(Parameter.JDBC_SONDAGGIO);
 		allCategory=mdc.selectAllCategory();
@@ -41,6 +42,7 @@ public class RegisterAction extends ActionSupport {
 	}
 	
 	public String execute2() throws Exception{
+		System.out.println("execute2");
 		/*
 		 * Occorre creare un singelton per il MandagerDataUser
 		 * in quanto non si puo creare un ogetto MandagerDataUser ogni volta che si

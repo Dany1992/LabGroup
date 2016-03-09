@@ -5,14 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Admin Panel</title>
 </head>
 <body>
-	<h1>Benvenuti al sito per sondaggi</h1>
-	
-	<a href="login.jsp">Login</a>
-	<a href="<s:url action='register'/>">Register</a>
-	<a href="<s:url action='newSurvey2'/>">Create Survey</a>
-	<a href="<s:url action='showResult'/>">Show Result "sorbetto"</a>
+<%
+session=request.getSession(false);
+%>
+Hello <s:property value="#session['name']" />
+<s:property value="#session['surname']" />
+<s:url action="logout.action" var="urlTag" ></s:url>
+<a href="<s:property value="#urlTag" />" >Logout.</a>
+<a href="<s:url action='newSurvey2'/>">Create Survey</a>
 </body>
 </html>

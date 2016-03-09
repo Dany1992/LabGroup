@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 //import com.opensymphony.xwork2.Result;
-
 import it.lab.sondaggio.model.User;
 import utility.DataBase;
 
@@ -17,8 +16,9 @@ import utility.DataBase;
  * @version 26-02-2016
  *
  */
-public class ManagerDataUser extends DataBase {
-	private String query;	
+public class ManagerDataUser extends DataBase{
+	private String query;
+	ArrayList<String> resQuery;
 	
 	/**
 	 * Questa metodo permette di salvare i dati di un user nel db
@@ -35,7 +35,7 @@ public class ManagerDataUser extends DataBase {
 				usr.getEmail() + "', '" +
 				usr.getPassword() +"',2);";
 		int resultSaveUser=insertToDB(query);
-		query = "SELECT idUser FROM User WHERE email = " + "'"+usr.getEmail()+"'";
+		query = "SELECT idUser FROM user WHERE email = " + "'"+usr.getEmail()+"'";
 		String idUser = queryToDB(query).get(0);
 		int resultSaveCategory = saveCategoryUser(idUser, usr.getUserCategory());
 		/*if serve per controllare che sia il salvataggio dei dati user
@@ -52,7 +52,7 @@ public class ManagerDataUser extends DataBase {
 	public int saveCategoryUser(String idUser,ArrayList<String> category){
 		String query;
 		System.out.println(category.get(0));
-		for (Iterator iterator = category.iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = category.iterator(); iterator.hasNext();) {
 			String string = (String) iterator.next();
 			System.out.println(string);
 			query = "INSERT INTO chooseCategory(idUser,nameCategory) VALUES ('" +
@@ -65,4 +65,25 @@ public class ManagerDataUser extends DataBase {
 		return 1;
 	}
 
+	public User checkUser(User usr){
+		query ="SELECT idUser, name, surname, email, password, type FROM user WHERE email='" + usr.getEmail() + "'" +
+				" and password='" + usr.getPassword() + "';";;
+		
+		resQuery = queryToDB(query);
+		if(resQuery.size() == 0){
+			
+			return null;
+			
+		}
+
+		usr.setIdUser(Integer.parseInt(resQuery.get(0)));
+		usr.setName(resQuery.get(1));
+		usr.setSurname(resQuery.get(2));
+		usr.setEmail(resQuery.get(3));
+		usr.setPassword(resQuery.get(4));
+		usr.setType(Integer.parseInt(resQuery.get(5)));
+
+		return usr;
+	
+	}
 }
