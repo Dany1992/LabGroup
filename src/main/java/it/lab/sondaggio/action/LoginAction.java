@@ -42,7 +42,18 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		session.put("name", userTmp.getName());
 		session.put("surname", userTmp.getSurname());
 		session.put("email", userTmp.getEmail());
-		return SUCCESS;
+		session.put("type",userTmp.getType());
+		
+		//return SUCCESS;
+		if (session.get("type").equals(2)) {
+			return "user";
+		}
+		
+		if (session.get("type").equals(1)) {
+			return "admin";
+		}
+
+		return "superadmin";
 	}
 
 	public User getUsr(){

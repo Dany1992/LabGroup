@@ -29,7 +29,9 @@
         </action>
         
        <action name="login" class="it.lab.sondaggio.action.LoginAction" method="execute">
-        	<result name = "success">index.jsp</result>
+        	<result name = "user">userPage.jsp</result>
+        	<result name = "admin">adminPage.jsp</result>
+        	<result name = "superadmin">suAdminPage.jsp</result>
         	<result name = "input">login.jsp</result>
         	<result name = "error">errorPage.jsp</result>
        </action>
