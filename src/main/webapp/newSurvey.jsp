@@ -10,14 +10,14 @@
 </head>
 <body>
 <h1>New Survey</h1>
-
-
-   
  
  
 <s:form action="newSurvey">
 
-   
+<%
+session=request.getSession(false);
+%>
+   <td>Name_User : <s:property value="#session['name']" />  </td>
    <table>
    <s:textfield name="s.name" label="Survay"/>
    <s:combobox label="Categorie" list="allCategory" name="s.category" value="Select Category" headerKey="-1" headerValue="--- Select Category ---"/>

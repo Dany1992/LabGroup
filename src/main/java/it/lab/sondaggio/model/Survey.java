@@ -4,10 +4,20 @@ import java.util.ArrayList;
 
 public class Survey {
 	private String name;
+	private Integer idUsr;
 	private String category;
 	private ArrayList<Question> quesAns = new ArrayList<Question>();
 	
 	
+	
+	public Integer getIdUsr() {
+		return idUsr;
+	}
+
+	public void setIdUsr(Integer idUsr) {
+		this.idUsr = idUsr;
+	}
+
 	public void addQuestion(Question q){
 		quesAns.add(q);
 	}

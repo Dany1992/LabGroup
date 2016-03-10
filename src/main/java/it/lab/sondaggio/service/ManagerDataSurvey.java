@@ -1,6 +1,9 @@
 package it.lab.sondaggio.service;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 
 import it.lab.sondaggio.model.Result;
 //import it.lab.sondaggio.model.Survey;
@@ -32,39 +35,24 @@ public class ManagerDataSurvey extends DataBase{
 	 * @return result ArrayList
 	 */
 	
-	public ArrayList<Result> showResult(){//Survey s){
+	public ArrayList<Result> showResult(String survey){  //oggetto di tipo survey o di tipo stringa
 		
-		/*
-		query1="SELECT question.question FROM question WHERE nameSurvey="+s.getName()+" order by question.idQuestion";
+		
+		query1="SELECT question.question FROM question WHERE nameSurvey='"+survey+"' order by question.idQuestion";
+		System.out.println(query1);
 		question = queryToDB(query1);
 		
-		query2="SELECT a1.answer1 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer1 FROM question, userResponse WHERE question.nameSurvey="+s.getName()+" and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer1 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey="+s.getName()+" ) ) as a1 group by a1.idQuestion";
+		query2="SELECT a1.answer1 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer1 FROM question, userResponse WHERE question.nameSurvey='"+survey+"' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer1 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='"+survey+"' ) ) as a1 group by a1.idQuestion";
 		answer1=queryToDB(query2);
 		
-		query3="SELECT a1.answer2 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer2 FROM question, userResponse WHERE question.nameSurvey="+s.getName()+" and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer2 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey="+s.getName()+" ) ) as a1 group by a1.idQuestion";
+		query3="SELECT a1.answer2 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer2 FROM question, userResponse WHERE question.nameSurvey='"+survey+"' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer2 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='"+survey+"' ) ) as a1 group by a1.idQuestion";
 		answer2=queryToDB(query3);
 		
-		query4="SELECT a1.answer3 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer3 FROM question, userResponse WHERE question.nameSurvey="+s.getName()+" and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer3 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey="+s.getName()+" ) ) as a1 group by a1.idQuestion";
+		query4="SELECT a1.answer3 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer3 FROM question, userResponse WHERE question.nameSurvey='"+survey+"' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer3 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='"+survey+"' ) ) as a1 group by a1.idQuestion";
 		answer3=queryToDB(query4);
 		
-		query5="SELECT a1.answer4 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer4 FROM question, userResponse WHERE question.nameSurvey="+s.getName()+" and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer4 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey="+s.getName()+" ) ) as a1 group by a1.idQuestion";
+		query5="SELECT a1.answer4 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer4 FROM question, userResponse WHERE question.nameSurvey='"+survey+"' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer4 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='"+survey+"' ) ) as a1 group by a1.idQuestion";
 		answer4=queryToDB(query5);
-		*/
-		query1="SELECT question.question FROM question WHERE nameSurvey='sorcio' order by question.idQuestion";
-		question = queryToDB(query1);
-		
-		query2="SELECT a1.answer1 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer1 FROM question, userResponse WHERE question.nameSurvey='sorcio' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer1 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='sorcio' )) as a1 group by a1.idQuestion";
-		answer1=queryToDB(query2);
-		
-		query3="SELECT a1.answer2 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer2 FROM question, userResponse WHERE question.nameSurvey='sorcio' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer2 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='sorcio' )) as a1 group by a1.idQuestion";
-		answer2=queryToDB(query3);
-		
-		query4="SELECT a1.answer3 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer3 FROM question, userResponse WHERE question.nameSurvey='sorcio' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer3 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='sorcio' )) as a1 group by a1.idQuestion";
-		answer3=queryToDB(query4);
-		
-		query5="SELECT a1.answer4 FROM ( SELECT question.idQuestion, count(userResponse.answer)as answer4 FROM question, userResponse WHERE question.nameSurvey='sorcio' and userResponse.idQuestion=question.idQuestion and userResponse.answer=question.answer4 group by question.idQuestion UNION ( SELECT question.idQuestion, 0 FROM question WHERE nameSurvey='sorcio' )) as a1 group by a1.idQuestion";
-		answer4=queryToDB(query5);
-		
 		
 		for (int i=0;i<question.size();i++) {
 			result.add(question.get(i));
@@ -91,8 +79,10 @@ public class ManagerDataSurvey extends DataBase{
 	 * @return survey ArrayList
 	 */
 	
+
 	public ArrayList<String> selectAllSurvey(){
-		query6 = "SELECT nameSurvey FROM survey";
+	    Map<String,Object> session=ActionContext.getContext().getSession();
+		query6 = "SELECT nameSurvey FROM survey where idUser="+(Integer)session.get("id")+" ;";
 		survey = queryToDB(query6);
 		return survey;
 	

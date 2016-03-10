@@ -1,12 +1,9 @@
 package it.lab.sondaggio.action;
 
 import java.util.ArrayList;
-
-//import java.util.ArrayList;
-//import java.util.List;
-
+import java.util.Map;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-
 import it.lab.sondaggio.service.ManagerDataAdmin;
 import it.lab.sondaggio.service.ManagerDataCategory;
 import it.lab.sondaggio.utils.Parameter;
@@ -17,10 +14,51 @@ import it.lab.sondaggio.model.Survey;
 
 
 public class NewSurveyAction extends ActionSupport {
+	private static final long serialVersionUID = 1L;
+	private Map<String,Object> session=ActionContext.getContext().getSession();
 	
-	ArrayList<String> allCategory = new ArrayList<String>();
-	ArrayList<String> userCategory = new ArrayList<String>();
+	private ArrayList<String> allCategory = new ArrayList<String>();
+	private ArrayList<String> userCategory = new ArrayList<String>();
+	private Survey s = new Survey();
 	
+	private Question q0= new Question();
+	private Question q1= new Question();
+	private Question q2= new Question();
+	private Question q3= new Question();
+	private Question q4= new Question();
+	private ManagerDataAdmin mda = new ManagerDataAdmin();
+	
+	public String execute() throws Exception {
+		s.setIdUsr((Integer)session.get("id"));
+		s.addQuestion(q0);
+		s.addQuestion(q1);
+		s.addQuestion(q2);
+		s.addQuestion(q3);
+		s.addQuestion(q4);
+		//s.setCategory(allCategory);//allCategory è una lista invece survey come categoria ha una stringa
+		
+		this.mda.setPath(Parameter.JDBC_SONDAGGIO);
+		
+		int result = this.mda.addSurvey(s);
+		
+		if (result == 1){
+			return SUCCESS;
+		}else {
+			return ERROR;
+		}
+	}
+	
+public String execute2() throws Exception {
+		
+	ManagerDataCategory mdc = new ManagerDataCategory();
+	mdc.setPath(Parameter.JDBC_SONDAGGIO);
+	allCategory=mdc.selectAllCategory();
+	return SUCCESS;
+}
+
+	
+	
+
 	public ArrayList<String> getUserCategory() {
 		return userCategory;
 	}
@@ -37,19 +75,7 @@ public class NewSurveyAction extends ActionSupport {
 		this.allCategory = allCategory;
 	}
 	
-	private static final long serialVersionUID = 1L;
-	
-	private ManagerDataAdmin mda = new ManagerDataAdmin();
-
-	
-	private Survey s = new Survey();
-	
-	private Question q0= new Question();
-	private Question q1= new Question();
-	private Question q2= new Question();
-	private Question q3= new Question();
-	private Question q4= new Question();
-	
+		
 	public Question getQ0() {
 		return q0;
 	}
@@ -89,36 +115,6 @@ public class NewSurveyAction extends ActionSupport {
 	public void setQ4(Question q4) {
 		this.q4 = q4;
 	}
-
-	public String execute() throws Exception {
-		
-		s.addQuestion(q0);
-		s.addQuestion(q1);
-		s.addQuestion(q2);
-		s.addQuestion(q3);
-		s.addQuestion(q4);
-		//s.setCategory(allCategory);//allCategory è una lista invece survey come categoria ha una stringa
-		
-		this.mda.setPath(Parameter.JDBC_SONDAGGIO);
-		
-		int result = this.mda.addSurvey(s);
-		
-		if (result == 1){
-			return SUCCESS;
-		}else {
-			return ERROR;
-		}
-	}
-	
-public String execute2() throws Exception {
-		
-	ManagerDataCategory mdc = new ManagerDataCategory();
-	mdc.setPath(Parameter.JDBC_SONDAGGIO);
-	allCategory=mdc.selectAllCategory();
-	return SUCCESS;
-}
-
-
 	
 
 	public Survey getS() {
@@ -131,9 +127,5 @@ public String execute2() throws Exception {
 
 
 
-
-	
-	
-	
 	
 }

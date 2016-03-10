@@ -33,7 +33,7 @@ public class ManagerDataAdmin extends DataBase{
 		int res1=0;//attributo di tipo intero dove memorizzo il risultato intero della risposta della query
 		int res2=0;
 		s.getQuesAns();
-		query1 = "INSERT INTO survey values('"+s.getName()+"','"+s.getCategory()+"');";
+		query1 = "INSERT INTO survey values('"+s.getName()+"','"+s.getCategory()+"',"+s.getIdUsr()+");";
 		res1=insertToDB(query1);
 		if(res1!=1) return 0; //Se la variabile res1 ha valore diverso da 1 la query non è stata eseguita correttamente ritornado un messaggio di errore 
 		

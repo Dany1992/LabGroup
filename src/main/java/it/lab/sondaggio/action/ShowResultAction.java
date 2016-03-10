@@ -10,14 +10,32 @@ import it.lab.sondaggio.utils.Parameter;
 
 public class ShowResultAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Result> allResult = new ArrayList<Result>();
+	 ArrayList<Result> allResult = new ArrayList<Result>();
+	 String nameSurvey ;
+	 
+	
+	
 
-	
-	
+	 
+	public String getNameSurvey() {
+		return nameSurvey;
+	}
+
+
+
+
+	public void setNameSurvey(String nameSurvey) {
+		this.nameSurvey = nameSurvey;
+	}
+
+
+
 
 	public ArrayList<Result> getAllResult() {
 		return allResult;
 	}
+
+
 
 
 	public void setAllResult(ArrayList<Result> allResult) {
@@ -30,7 +48,7 @@ public class ShowResultAction extends ActionSupport{
 	public String execute() throws Exception {
 		ManagerDataSurvey mda = new ManagerDataSurvey();
 		mda.setPath(Parameter.JDBC_SONDAGGIO);
-		allResult=mda.showResult();
+		allResult=mda.showResult(nameSurvey);
 		return SUCCESS;
 	}
 
