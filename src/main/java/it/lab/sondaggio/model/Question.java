@@ -1,11 +1,11 @@
 package it.lab.sondaggio.model;
 
 public class Question {
-	private String question;
-	private String rispA;
-	private String rispB;
-	private String rispC;
-	private String rispD;
+	public String question;
+	public String rispA;
+	public String rispB;
+	public String rispC;
+	public String rispD;
 	
 	public String getRispA() {
 		return rispA;

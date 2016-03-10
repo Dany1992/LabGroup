@@ -1,3 +1,4 @@
+<%@page import="org.apache.struts2.components.If"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -5,16 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Panel</title>
+<title>answerSurvey</title>
 </head>
 <body>
-<%
-session=request.getSession(false);
-%>
-Hello <s:property value="#session['name']" /><br>
-<s:property value="#session['surname']" />
-<s:url action="logout.action" var="urlTag" ></s:url>
-<a href="<s:property value="#urlTag" />" >Logout.</a><br>
-<a href="<s:url action='showSurveysUser'/>">Answer Survey</a>
+	<s:iterator value="surveysUser">
+		<s:url action="answerSurvey" var="urlTag">
+			<s:param name="attribute"><s:property /></s:param>
+		</s:url>
+		<a href="<s:property value="#urlTag"/>"><s:property /><br></a>
+	</s:iterator>
 </body>
 </html>
