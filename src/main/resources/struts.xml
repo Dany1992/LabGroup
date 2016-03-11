@@ -32,6 +32,7 @@
             <result name = "success">showResult.jsp</result>
             <result name ="error">errorPage.jsp</result>
         </action>
+        
 
        <action name="login" class="it.lab.sondaggio.action.LoginAction" method="execute">
         	<result name = "user">userPage.jsp</result>

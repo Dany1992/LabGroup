@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" /> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Show Result</title>
 </head>
@@ -14,8 +14,11 @@
 
 <s:form action="showResult">
 
+<td>Survey : <s:property value="nameSurvey"/> </td>
 
-<s:iterator value="getAllResult()">
+<br></br>
+
+<s:iterator value="allResult">
         <table>
     <tr>
         <th>Question</th>
@@ -38,10 +41,6 @@
     </s:iterator>
 
 </s:form>
-
-
-
-
 
 
 

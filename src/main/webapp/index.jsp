@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="style.css" type="text/css" />
 <title>Home</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
 	<a href="login.jsp">Login</a>
 	<a href="<s:url action='register'/>">Register</a>
 	<a href="<s:url action='newSurvey2'/>">Create Survey</a>
-	<a href="<s:url action='showResult'/>">Show Result "sorcio"</a>
+	<a href="<s:url action='showResult'/>">Show Result"sorcio"</a>
 	<a href="<s:url action='selectUser'/>">CreateAdmin</a>
 </body>
 </html>
