@@ -14,6 +14,7 @@ public class Result {
 		setRispC(rispC);
 		setRispD(rispD);
 	}
+	
 	public String getQuestion() {
 		return question;
 	}

@@ -94,7 +94,6 @@ public class LoginAction extends ActionSupport implements SessionAware{
 
 
 	public void setSession(Map<String, Object> session) {
-		// TODO Auto-generated method stub
 		this.session=(SessionMap<String, Object>)session;
 	}
 	

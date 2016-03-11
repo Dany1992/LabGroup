@@ -1,15 +1,24 @@
 package it.lab.sondaggio.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import javax.print.DocFlavor.STRING;
 
 import com.opensymphony.xwork2.ActionContext;
 
+import it.lab.sondaggio.model.Question;
 import it.lab.sondaggio.model.Result;
 //import it.lab.sondaggio.model.Survey;
 import utility.DataBase;
 
-
+/**
+ * 
+ * @author Danilo Butrico, Pierfrancesco Tommasino, Dario Onorati
+ *
+ */
 public class ManagerDataSurvey extends DataBase{
 	/*Attributi per il metodo showResult()*/
 	private String query1;
@@ -25,9 +34,9 @@ public class ManagerDataSurvey extends DataBase{
 	/*Attributi per il metodo selectAllSurvey()*/
 	private ArrayList<String> result =new ArrayList<String>();
 	private ArrayList<Result> allResult =new ArrayList<Result>();
-	
 	private String query6;
 	private ArrayList<String> survey;
+	Map session = ActionContext.getContext().getSession();
 	
 	/**
 	 * Questo metodo consente di ottenere quanti utenti hanno votato per ogni risposta di ogni domanda di un determinato sondaggio
@@ -78,8 +87,6 @@ public class ManagerDataSurvey extends DataBase{
 	 * 
 	 * @return survey ArrayList
 	 */
-	
-
 	public ArrayList<String> selectAllSurvey(){
 	    Map<String,Object> session=ActionContext.getContext().getSession();
 		query6 = "SELECT nameSurvey FROM survey where idUser="+(Integer)session.get("id")+" ;";
@@ -88,14 +95,39 @@ public class ManagerDataSurvey extends DataBase{
 	
 	}
 	
+	/**
+	 * Questa classe permette di selezionare tutti i sondaggi che un user non ha fatto
+	 * e riferenti alle categorie che lui in fase di registrazione ha selezionato
+	 * 
+	 * @return ArrayList<String>
+	 */
+	public ArrayList<String> getSurveysUser(int idUser) {
+		String query = "SELECT b.nameSurvey FROM ( ( SELECT question.nameSurvey "
+				+ "FROM question, userResponse WHERE userResponse.idQuestion = question.idQuestion "
+				+ "AND idUser = "+idUser+" ) as a RIGHT JOIN ( SELECT nameSurvey FROM survey) as b on a.nameSurvey = b.nameSurvey ) "
+				+ "WHERE a.nameSurvey is null;";
+		return queryToDB(query);
+	}
 	
+	public ArrayList<Question> getQuestionsSurvey(String nameSurvey){
+		ArrayList<String> resultQuery = new ArrayList<String>();
+		ArrayList<Question> querySurvey = new ArrayList<Question>();
+		String query = "SELECT question, answer1, answer2, answer3, answer4 "
+				+ "FROM question WHERE nameSurvey = " +"'"+ nameSurvey +"'"+ ";";
+		resultQuery = queryToDB(query);
+		for (int i = 0; i < 25; i=i+5) {
+				Question question = new Question();
+				question.setQuestion(resultQuery.get(i));
+				question.setRispA(resultQuery.get(i+1));
+				question.setRispB(resultQuery.get(i+2));
+				question.setRispC(resultQuery.get(i+3));
+				question.setRispD(resultQuery.get(i+4));
+				querySurvey.add(question);
+		}
+		return querySurvey;
+	}	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public String saveAnswer(HashMap<String, String> answerSurvey){
+		return "success";
+	}
 }
