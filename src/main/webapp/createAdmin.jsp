@@ -5,15 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="style.css" type="text/css" />
-<title>Login</title>
+<title>Create Admin</title>
 </head>
 <body>
-	<h1>Login</h1>
-		<s:form action="login" validate="true" method="post">
-		<s:textfield name="usr.email" label="e-mail" />
-		<s:textfield name="usr.password" label="password" />
-		<s:submit/>
-		</s:form>
+<h1> Create Admin </h1>
+
+<s:form action = "selectUser">
+	<s:iterator value="getAllUser()">
+		<s:a><s:property value="getName()"/>, <s:property value="getSurname()"/> </s:a><br>
+	</s:iterator>
+
+</s:form>
+
+
+
 </body>
 </html>

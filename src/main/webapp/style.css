@@ -1,8 +1,36 @@
 @CHARSET "UTF-8";
 
-
+/*
 table, th, td {
    border: 1px solid black;
-   width: 30%;
+   width: 50%;
 
+}
+*/
+
+table, th, td {
+	border: 1px solid black;
+	border-color: #FFC107;
+	font: italic bold 12px/30px Georgia, serif;
+	color : #FF6D00;
+	text-align: center;
+}
+
+body {
+	background-image: url("https://d2wss9bif9q3el.cloudfront.net/214/426/images/paper.gif");
+}
+
+table :hover {
+	border-color: #FF6F00;
+}
+
+h1 {
+	color: #FF6D00;
+	text-align: center;
+
+}
+
+button {
+    background-color: #FFC107;
+    
 }

@@ -20,14 +20,20 @@
 
 		<action name="newSurvey" class="it.lab.sondaggio.action.NewSurveyAction" method="execute">
             <result name = "success">index.jsp</result>
-            <result name ="error">error.jsp</result>
+            <result name ="error">errorPage.jsp</result>
         </action>
 		
 		<action name="newSurvey2" class="it.lab.sondaggio.action.NewSurveyAction" method="execute2">
             <result name = "success">newSurvey.jsp</result>
-            <result name ="error">error.jsp</result>
+            <result name ="error">errorPage.jsp</result>
         </action>
         
+        <action name="showResult" class="it.lab.sondaggio.action.ShowResultAction" method="execute">
+            <result name = "success">showResult.jsp</result>
+            <result name ="error">errorPage.jsp</result>
+        </action>
+        
+
        <action name="login" class="it.lab.sondaggio.action.LoginAction" method="execute">
         	<result name = "user">userPage.jsp</result>
         	<result name = "admin">adminPage.jsp</result>
@@ -39,6 +45,12 @@
 	   <action name="logout" class="it.lab.sondaggio.action.LogOutAction" method="execute">
 			<result name = "success">index.jsp</result>
 	   </action>
+	   
+	   <action name="selectUser" class="it.lab.sondaggio.action.CreateAdminAction" method="execute">
+			<result name = "success">createAdmin.jsp</result>
+			 <result name ="error">errorPage.jsp</result>
+	   </action>
+	   
     </package>
 
     <!-- Add addition packages and configuration here. -->

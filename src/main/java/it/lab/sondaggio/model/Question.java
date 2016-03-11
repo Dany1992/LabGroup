@@ -39,22 +39,6 @@ public class Question {
 		this.rispD = rispD;
 	}
 
-	public Question(String question,String rispA, String rispB){
-		this.question = question;
-		this.rispA = "sì";
-		this.rispB = "no";
-	}
-	
-	public Question(String question,String A, String B, String C, String D){
-		this.question = question;
-		rispA = A; rispB = B;
-		rispC = C; rispD = D;
-	}
-	
-	public Question(){
-	}
-	
-	
 	public String getQuestion() {
 		return question;
 	}

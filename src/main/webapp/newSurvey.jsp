@@ -10,22 +10,17 @@
 </head>
 <body>
 <h1>New Survey</h1>
-
-
-   
  
  
 <s:form action="newSurvey">
 
+<%
+session=request.getSession(false);
+%>
+   <td>Name_User : <s:property value="#session['name']" />  </td>
    <table>
    <s:textfield name="s.name" label="Survay"/>
-   <s:combobox label="Categorie" list="allCategory" name="s.category" value="userCategory"/>
-   <!--  
-   <s:combobox label="Category" 
-		headerKey="-1" headerValue="--- Select Category ---"
-		list="#{'1':'Jan', '2':'Feb', '3':'Mar', '4':'Apr'}" 
-		name="" />
-	-->
+   <s:combobox label="Categorie" list="allCategory" name="s.category" value="Select Category" headerKey="-1" headerValue="--- Select Category ---"/>
    </table>
    <br>
    <table>
@@ -70,15 +65,6 @@
    </table>
 </s:form>
 
-<!--  
-   <s:radio label="Yes or No" name="Answer1" value="yn" list="#{'1':''}" />
-   <s:radio label="Other" name="Answer1" value="ot" list="#{'1':''}"  />
-   <s:textfield name="q.rispA" label="A"/> 
-   <s:textfield name="q.rispB" label="B"/> 
-   <s:textfield name="q.rispC" label="C"/> 
-   <s:textfield name="q.rispD" label="D"/>
-   
- -->
 	
 
 
